@@ -36,5 +36,11 @@ class MainWindow(QMainWindow):
 
         self.recount_coord_widgets()
 
-    
+    def calculate(self):
+        items = (self.ui.coordwidget_layout.itemAt(i).widget() for i in range(self.ui.coordwidget_layout.count()))
+        for w in items:
+            print(w.id_widget)
 
+    def recount_coord_widgets(self):
+        for i in range(self.ui.coordwidget_layout.count()):
+            self.ui.coordwidget_layout.itemAt(i).widget().ui.groupBox.setTitle(str(i+1))
