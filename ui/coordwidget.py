@@ -1,8 +1,12 @@
 from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import pyqtSignal
 from ui.base_qt_ui.ui_coord_widget import Ui_Form
 
 
 class CoordWidget(QWidget):
+
+    delete = pyqtSignal(int)
+
     def __init__(self, id_widget: int, parent=None):
         super(CoordWidget, self).__init__(parent)
         self.ui = Ui_Form()
@@ -13,4 +17,4 @@ class CoordWidget(QWidget):
 
     def press_del(self):
         self.ui.groupBox.setParent(None)
-        # self.delete.emit(self.id_widget)
+        self.delete.emit(self.id_widget)
