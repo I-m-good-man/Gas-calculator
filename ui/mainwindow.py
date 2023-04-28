@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 from ui.base_qt_ui.ui_main_window import Ui_MainWindow
 from ui.coordwidget import CoordWidget
-from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput
+from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput, GasCalculations
 
 
 class MainWindow(QMainWindow):
@@ -44,21 +44,48 @@ class MainWindow(QMainWindow):
 
         self.recount_coord_widgets()
 
+    def recount_coord_widgets(self):
+        for i in range(self.ui.coordwidget_layout.count()):
+            self.ui.coordwidget_layout.itemAt(i).widget().ui.groupBox.setTitle(str(i+1))
+
     def calculate(self):
         temp_value = self.ui.temp_doubleSpinBox.value()
         p_value = self.ui.pressure_doubleSpinBox.value()
 
-        print(temp_value, p_value)
         items = [self.ui.coordwidget_layout.itemAt(i).widget() for i in range(self.ui.coordwidget_layout.count())]
 
         if not items:
             self.error.setText('Введите газы!')
             self.error.exec()
         else:
+            gas_list = []
             for w in items:
-                GasInput()
-                print(w.id_widget)
+                args_list = [w.ui.mol_mass_comboBox.currentText(),
+                             w.ui.mass_volume_comboBox.currentText(),
+                             w.ui.volume_checkbox.isChecked(),
+                             w.ui.percent_checkbox_2.isChecked(),
+                             w.ui.ml_checkbox.isChecked(),
+                             w.ui.mass_checkbox.isChecked(),
+                             w.ui.percent_checkbox.isChecked(),
+                             w.ui.g_checkbox.isChecked(),
+                             p_value, temp_value
+                             ]
+                try:
+                    gas = GasInput(*args_list).process_input_data()
+                    gas_list.append(gas)
+                except MolMassInputException as error:
+                    self.error.setText(f'Газ {w.ui.groupBox.title()}. {str(error)}')
+                    self.error.exec()
+                except VolumeMassInputException as error:
+                    self.error.setText(f'Газ {w.ui.groupBox.title()}. {str(error)}')
+                    self.error.exec()
 
-    def recount_coord_widgets(self):
-        for i in range(self.ui.coordwidget_layout.count()):
-            self.ui.coordwidget_layout.itemAt(i).widget().ui.groupBox.setTitle(str(i+1))
+            # если во всех газах оказались валидные данные
+            if len(gas_list) != len(items):
+                return
+            else:
+                gc = GasCalculations(gas_list)
+                self.ui.R_result_label.setText(f'R = {gc.R}')
+                self.ui.M_result_label.setText(f'M = {gc.M}')
+
+
