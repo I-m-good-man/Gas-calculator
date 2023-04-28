@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>920</width>
-    <height>578</height>
+    <width>907</width>
+    <height>487</height>
    </rect>
   </property>
   <property name="font">
@@ -49,6 +49,75 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item alignment="Qt::AlignLeft">
+         <widget class="QLabel" name="temp_label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Температура T [К]</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="temp_doubleSpinBox">
+          <property name="decimals">
+           <number>0</number>
+          </property>
+          <property name="minimum">
+           <double>-100000.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>100000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>273.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item alignment="Qt::AlignLeft">
+         <widget class="QLabel" name="pressure_label">
+          <property name="text">
+           <string>Давление p [Па]</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="pressure_doubleSpinBox">
+          <property name="decimals">
+           <number>0</number>
+          </property>
+          <property name="minimum">
+           <double>-100000.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>1000000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>101300.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QScrollArea" name="inputs_area">
         <property name="widgetResizable">
          <bool>true</bool>
@@ -61,8 +130,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>898</width>
-           <height>490</height>
+           <width>885</width>
+           <height>320</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -80,15 +149,22 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="results_label">
+       <widget class="QLabel" name="R_result_label">
         <property name="font">
          <font>
-          <pointsize>10</pointsize>
+          <pointsize>14</pointsize>
           <bold>true</bold>
          </font>
         </property>
         <property name="text">
-         <string>Результат рассчета:</string>
+         <string>R = </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="M_result_label">
+        <property name="text">
+         <string>M = </string>
         </property>
        </widget>
       </item>
