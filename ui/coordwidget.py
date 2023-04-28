@@ -24,9 +24,11 @@ class CoordWidget(QWidget):
 
         self.ui.delete_button.clicked.connect(self.press_del)
 
+        # по умолчанию чекбокс массы выставлен
+        self.ui.mass_checkbox.setChecked(True)
+        self.ui.g_checkbox.setChecked(True)
+
         # делаем подробный выбор подчекбоксов объема и массы недоступными, пока не выберут чекбокс объема или массы
-        self.ui.g_checkbox.setCheckable(False)
-        self.ui.percent_checkbox.setCheckable(False)
         self.ui.ml_checkbox.setCheckable(False)
         self.ui.percent_checkbox_2.setCheckable(False)
 
@@ -57,8 +59,10 @@ class CoordWidget(QWidget):
         self.ui.percent_checkbox.setChecked(False)
         self.ui.percent_checkbox.setCheckable(False)
 
-        # делаем кликабельными чекбоксы объема
+
+        # делаем кликабельными чекбоксы объема и выбираем один чекбокс
         self.ui.ml_checkbox.setCheckable(True)
+        self.ui.ml_checkbox.setChecked(True)
         self.ui.percent_checkbox_2.setCheckable(True)
 
     def press_g_checkbox(self):
@@ -91,8 +95,9 @@ class CoordWidget(QWidget):
         self.ui.percent_checkbox_2.setChecked(False)
         self.ui.percent_checkbox_2.setCheckable(False)
 
-        # делаем кликабельными чекбоксы массы
+        # делаем кликабельными чекбоксы массы и выбираем один чекбокс
         self.ui.g_checkbox.setCheckable(True)
+        self.ui.g_checkbox.setChecked(True)
         self.ui.percent_checkbox.setCheckable(True)
 
     def press_ml_checkbox(self):
