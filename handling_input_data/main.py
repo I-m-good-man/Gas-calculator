@@ -30,14 +30,14 @@ class GasInput:
             mol_mass_value = float(mol_mass_value)
 
         except ValueError:
-            raise MolMassInputException('Ошибка при вводе молярной массы')
+            raise MolMassInputException('Ошибка при вводе молярной массы.')
         # переводим в СИ
         mol_mass_si = mol_mass_value / 1000
 
         try:
             volume_mass_value = float(self.volume_mass_input.strip())
         except ValueError:
-            raise VolumeMassInputException('Ошибка при вводе массы/объема')
+            raise VolumeMassInputException('Ошибка при вводе массы/объема.')
 
         if self.volume_checkbox:
             volume = volume_mass_value
@@ -58,7 +58,8 @@ class GasInput:
 
 
 class GasInterface:
-    ...
+    amount_of_substance = None
+    mol_mass_si = None
 
 
 class GasMassGr(GasInterface):
@@ -97,9 +98,30 @@ class GasVolumePercent(GasInterface, GasVolume):
         self.amount_of_substance = (self.p * self.volume_percent) / (100 * self.R * self.T)
 
 
+class GasCalculations:
+    def __init__(self, gas_list):
+        self.gas_list = gas_list
+        self.R_universe = 8.314
+        self._M = None
+        self._R = None
+
+    @property
+    def M(self):
+        self._M = round(sum(map(lambda x: x.mol_mass_si * x.amount_of_substance, self.gas_list)) /
+                sum(map(lambda x: x.amount_of_substance, self.gas_list)), 6)
+        return self._M
+
+    @property
+    def R(self):
+        self._R = round(self.R_universe / self.M, 6)
+        return self._R
+
+
 if __name__ == "__main__":
-    gas = GasInput('fe: 3.1', '1.5', True, True, False, False, False, False)
-    print(gas.process_input_data())
+    gas = GasInput('fe: 3.1', '1.5', True, True, False, False, False, False, 273, 10000).process_input_data()
+    gc = GasCalculations([gas]*10)
+    print(gc.M, gc.R)
+
 
 
 
