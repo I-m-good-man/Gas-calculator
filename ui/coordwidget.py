@@ -13,13 +13,14 @@ class CoordWidget(QWidget):
         self.ui.setupUi(self)
         self.id_widget = id_widget
 
+        self.ui.volume_checkbox.setToolTip('Объём. Выберите ввод в процентах или в мл.\nОсобенности ввода:\n1) Единицы измерения писать не нужно, записывается только число.\n2) Десятичная дробь может вводится как через запятую, так и через точку.\n    Пример: 1,5; 2.6')
+        self.ui.mass_checkbox.setToolTip('Масса. Выберите ввод в процентах или в г.\nОсобенности ввода:\n1) Единицы измерения писать не нужно, записывается только число.\n2) Десятичная дробь может вводится как через запятую, так и через точку.\n    Пример: 1,5; 2.6')
 
         self.ui.mol_mass_comboBox.setEditable(True)
         self.ui.mol_mass_label.setToolTip('Молярная масса газа.\nОсобенности ввода:\n1) Десятичная дробь может вводится как через запятую, так и через точку.\n    Пример: 1,5; 2.6\n2) Если был сделан выбор из предложенных вариантов, то не нужно ничего стирать. Программа сама определит число.\n    Пример: O2: 32, He: 4')
         self.base_gases = ['O2: 32', 'He: 4', 'Ar: 40', 'Ne: 20', 'Cl2: 71', 'NO2: 46', 'NO: 30', 'O3: 48']
         self.ui.mol_mass_comboBox.addItems(self.base_gases)
         self.ui.mass_volume_comboBox.setEditable(True)
-
 
         self.ui.delete_button.clicked.connect(self.press_del)
 
