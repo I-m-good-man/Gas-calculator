@@ -1,7 +1,8 @@
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QMessageBox
 
 from ui.base_qt_ui.ui_main_window import Ui_MainWindow
 from ui.coordwidget import CoordWidget
+from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput
 
 
 class MainWindow(QMainWindow):
@@ -11,6 +12,10 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.counter_id: int = 0
+
+        self.error = QMessageBox()
+        self.error.setWindowTitle('Ошибка!')
+        self.error.setText('ошибка')
 
         self.ui.add_input_btn.clicked.connect(self.add_coord_widget)
         self.ui.clear_inputs_btn.clicked.connect(self.clear_area)
@@ -40,9 +45,19 @@ class MainWindow(QMainWindow):
         self.recount_coord_widgets()
 
     def calculate(self):
-        items = (self.ui.coordwidget_layout.itemAt(i).widget() for i in range(self.ui.coordwidget_layout.count()))
-        for w in items:
-            print(w.id_widget)
+        temp_value = self.ui.temp_doubleSpinBox.value()
+        p_value = self.ui.pressure_doubleSpinBox.value()
+
+        print(temp_value, p_value)
+        items = [self.ui.coordwidget_layout.itemAt(i).widget() for i in range(self.ui.coordwidget_layout.count())]
+
+        if not items:
+            self.error.setText('Введите газы!')
+            self.error.exec()
+        else:
+            for w in items:
+                GasInput()
+                print(w.id_widget)
 
     def recount_coord_widgets(self):
         for i in range(self.ui.coordwidget_layout.count()):
