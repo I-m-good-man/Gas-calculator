@@ -73,7 +73,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="input_value_2"/>
+           <widget class="QComboBox" name="mol_mass_comboBox"/>
           </item>
          </layout>
         </item>
@@ -142,7 +142,7 @@
            </layout>
           </item>
           <item>
-           <widget class="QLineEdit" name="input_value"/>
+           <widget class="QComboBox" name="mass_volume_comboBox"/>
           </item>
          </layout>
         </item>
