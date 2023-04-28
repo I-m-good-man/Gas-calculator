@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(907, 487)
+        MainWindow.resize(907, 506)
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
@@ -25,6 +25,9 @@ class Ui_MainWindow(object):
         self.base_layout.setObjectName("base_layout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+        self.manual_button = QtWidgets.QPushButton(parent=self.centralwidget)
+        self.manual_button.setObjectName("manual_button")
+        self.horizontalLayout.addWidget(self.manual_button)
         self.clear_inputs_btn = QtWidgets.QPushButton(parent=self.centralwidget)
         self.clear_inputs_btn.setObjectName("clear_inputs_btn")
         self.horizontalLayout.addWidget(self.clear_inputs_btn)
@@ -69,7 +72,7 @@ class Ui_MainWindow(object):
         self.inputs_area.setObjectName("inputs_area")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setEnabled(True)
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 885, 320))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 885, 339))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -102,6 +105,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Калькулятор для газов"))
+        self.manual_button.setText(_translate("MainWindow", "О программе"))
         self.clear_inputs_btn.setText(_translate("MainWindow", "Очистить"))
         self.add_input_btn.setText(_translate("MainWindow", "Добавить"))
         self.calculate_btn.setText(_translate("MainWindow", "Рассчёт"))

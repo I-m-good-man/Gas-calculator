@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>907</width>
-    <height>487</height>
+    <height>506</height>
    </rect>
   </property>
   <property name="font">
@@ -25,6 +25,13 @@
      <layout class="QVBoxLayout" name="base_layout">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="manual_button">
+          <property name="text">
+           <string>О программе</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QPushButton" name="clear_inputs_btn">
           <property name="text">
@@ -131,7 +138,7 @@
            <x>0</x>
            <y>0</y>
            <width>885</width>
-           <height>320</height>
+           <height>339</height>
           </rect>
          </property>
          <property name="sizePolicy">
