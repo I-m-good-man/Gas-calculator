@@ -29,6 +29,9 @@ class MainWindow(QMainWindow):
             item = self.ui.coordwidget_layout.takeAt(0)
             item.widget().deleteLater()
 
+        self.ui.temp_doubleSpinBox.setProperty("value", 273.0)
+        self.ui.pressure_doubleSpinBox.setProperty("value", 101300.0)
+
     def delete_coordwidget(self, wid: int):
         widget = self.sender()
         self.ui.coordwidget_layout.removeWidget(widget)
