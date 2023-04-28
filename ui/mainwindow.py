@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
-
+from PyQt6 import QtGui
 from ui.base_qt_ui.ui_main_window import Ui_MainWindow
 from ui.coordwidget import CoordWidget
 from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput, GasCalculations
@@ -12,6 +12,13 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.counter_id: int = 0
+
+        self.setWindowIcon(QtGui.QIcon('logo.png'))
+
+        self.about_program = QMessageBox()
+        self.about_program.setWindowTitle('О программе')
+        self.about_program.setText('Программа для расчета индивидуальной газовой постоянной смеси газов. Сделано для РХТУ. \n\nАвтор: Хатымов Марат Рустемович\nEmail: maratxat@ya.ru\nTelegram: @i_m_good_man')
+        self.ui.manual_button.clicked.connect(self.press_manual_button)
 
         self.error = QMessageBox()
         self.error.setWindowTitle('Ошибка!')
@@ -91,4 +98,5 @@ class MainWindow(QMainWindow):
                 self.ui.R_result_label.setText(f'R = {gc.R}')
                 self.ui.M_result_label.setText(f'M = {gc.M}')
 
-
+    def press_manual_button(self):
+        self.about_program.exec()
