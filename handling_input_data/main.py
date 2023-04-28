@@ -8,7 +8,7 @@ class VolumeMassInputException(Exception):
 
 class GasInput:
     def __init__(self, mol_mass_input, volume_mass_input, volume_checkbox, volume_percent_checkbox, volume_ml_checkbox,
-                 mass_checkbox, mass_percent_checkbox, mass_g_checkbox):
+                 mass_checkbox, mass_percent_checkbox, mass_g_checkbox, p, T):
         self.mol_mass_input = mol_mass_input
         self.volume_checkbox = volume_checkbox
         self.volume_percent_checkbox = volume_percent_checkbox
@@ -17,6 +17,8 @@ class GasInput:
         self.mass_percent_checkbox = mass_percent_checkbox
         self.mass_g_checkbox = mass_g_checkbox
         self.volume_mass_input = volume_mass_input
+        self.p = p
+        self.T = T
 
     def process_input_data(self):
         """
@@ -41,10 +43,10 @@ class GasInput:
             volume = volume_mass_value
             if self.volume_ml_checkbox:
                 volume_ml_si = volume / (10 ** 6)  # переводим в СИ из мл в м3
-                return GasVolumeMl(mol_mass_si, volume_ml_si)
+                return GasVolumeMl(mol_mass_si, volume_ml_si, self.p, self.T)
             elif self.volume_percent_checkbox:
                 volume_percent = volume
-                return GasVolumePercent(mol_mass_si, volume_percent)
+                return GasVolumePercent(mol_mass_si, volume_percent, self.p, self.T)
         elif self.mass_checkbox:
             mass = volume_mass_value
             if self.mass_g_checkbox:
@@ -74,23 +76,26 @@ class GasMassPercent(GasInterface):
 
 
 class GasVolume:
-    p = 101300  # давление по умолчанию
     R = 8.314  # универсальная газовая постоянная
-    T = 273  # температура по умолчанию
 
 
 class GasVolumeMl(GasInterface, GasVolume):
-    def __init__(self, mol_mass_si, volume_ml_si):
+    def __init__(self, mol_mass_si, volume_ml_si, p, T):
         self.mol_mass_si = mol_mass_si
         self.volume_ml_si = volume_ml_si
+        self.p = p
+        self.T = T
         self.amount_of_substance = (self.p * self.volume_ml_si) / (self.R * self.T)
 
 
 class GasVolumePercent(GasInterface, GasVolume):
-    def __init__(self, mol_mass_si, volume_percent):
+    def __init__(self, mol_mass_si, volume_percent, p, T):
         self.mol_mass_si = mol_mass_si
         self.volume_percent = volume_percent
+        self.p = p
+        self.T = T
         self.amount_of_substance = (self.p * self.volume_percent) / (100 * self.R * self.T)
+
 
 if __name__ == "__main__":
     gas = GasInput('fe: 3.1', '1.5', True, True, False, False, False, False)
