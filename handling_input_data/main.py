@@ -30,14 +30,14 @@ class GasInput:
             mol_mass_value = float(mol_mass_value)
 
         except ValueError:
-            raise MolMassInputException()
+            raise MolMassInputException('Ошибка при вводе молярной массы')
         # переводим в СИ
         mol_mass_si = mol_mass_value / 1000
 
         try:
             volume_mass_value = float(self.volume_mass_input.strip())
         except ValueError:
-            raise VolumeMassInputException()
+            raise VolumeMassInputException('Ошибка при вводе массы/объема')
 
         if self.volume_checkbox:
             volume = volume_mass_value
