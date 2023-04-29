@@ -28,7 +28,8 @@ class MainWindow(QMainWindow):
         self.ui.clear_inputs_btn.clicked.connect(self.clear_area)
         self.ui.calculate_btn.clicked.connect(self.calculate)
 
-      
+        # добавляем самый первый виджет в начале
+        self.add_coord_widget()
 
     def add_coord_widget(self):
         self.counter_id += 1
