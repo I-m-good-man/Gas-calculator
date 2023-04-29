@@ -86,7 +86,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Молярная масса газа (г./моль)</string>
+             <string>Молярная масса газа (г/моль)</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -123,7 +123,7 @@
                 <item>
                  <widget class="QCheckBox" name="ml_checkbox">
                   <property name="text">
-                   <string>мл.</string>
+                   <string>мл</string>
                   </property>
                  </widget>
                 </item>
@@ -152,7 +152,7 @@
                 <item>
                  <widget class="QCheckBox" name="g_checkbox">
                   <property name="text">
-                   <string>гр.</string>
+                   <string>г</string>
                   </property>
                  </widget>
                 </item>
