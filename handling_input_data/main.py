@@ -102,13 +102,13 @@ class GasCalculations:
     def __init__(self, gas_list):
         self.gas_list = gas_list
         self.R_universe = 8.314
-        self._M = None
+        self._M = None  # в г/моль
         self._R = None
 
     @property
     def M(self):
         self._M = round(sum(map(lambda x: x.mol_mass_si * x.amount_of_substance, self.gas_list)) /
-                sum(map(lambda x: x.amount_of_substance, self.gas_list)), 6)
+                sum(map(lambda x: x.amount_of_substance, self.gas_list)), 6) * 1000
         return self._M
 
     @property
