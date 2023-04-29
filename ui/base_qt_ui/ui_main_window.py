@@ -110,9 +110,9 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Калькулятор для газов"))
         self.manual_button.setText(_translate("MainWindow", "О программе"))
-        self.clear_inputs_btn.setText(_translate("MainWindow", "Очистить"))
-        self.add_input_btn.setText(_translate("MainWindow", "Добавить"))
-        self.calculate_btn.setText(_translate("MainWindow", "Рассчёт"))
+        self.clear_inputs_btn.setText(_translate("MainWindow", "Очистить поля"))
+        self.add_input_btn.setText(_translate("MainWindow", "Добавить газ"))
+        self.calculate_btn.setText(_translate("MainWindow", "Расчёт"))
         self.temp_label.setText(_translate("MainWindow", "Температура T [К]"))
         self.pressure_label.setText(_translate("MainWindow", "Давление p [Па]"))
         self.R_result_label.setText(_translate("MainWindow", "R = "))
