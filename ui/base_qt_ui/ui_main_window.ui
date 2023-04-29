@@ -35,14 +35,14 @@
         <item>
          <widget class="QPushButton" name="clear_inputs_btn">
           <property name="text">
-           <string>Очистить</string>
+           <string>Очистить поля</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="add_input_btn">
           <property name="text">
-           <string>Добавить</string>
+           <string>Добавить газ</string>
           </property>
          </widget>
         </item>
@@ -129,6 +129,9 @@
         <property name="widgetResizable">
          <bool>true</bool>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
         <widget class="QWidget" name="scrollAreaWidgetContents">
          <property name="enabled">
           <bool>true</bool>
@@ -148,8 +151,24 @@
           </sizepolicy>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="spacing">
+           <number>3</number>
+          </property>
+          <property name="leftMargin">
+           <number>9</number>
+          </property>
+          <property name="topMargin">
+           <number>3</number>
+          </property>
+          <property name="bottomMargin">
+           <number>3</number>
+          </property>
           <item>
-           <layout class="QVBoxLayout" name="coordwidget_layout"/>
+           <layout class="QVBoxLayout" name="coordwidget_layout">
+            <property name="spacing">
+             <number>3</number>
+            </property>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -180,6 +199,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../res.qrc"/>
+ </resources>
  <connections/>
 </ui>
