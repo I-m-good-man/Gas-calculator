@@ -44,8 +44,14 @@ class MainWindow(QMainWindow):
         self.ui.temp_doubleSpinBox.setProperty("value", 273.0)
         self.ui.pressure_doubleSpinBox.setProperty("value", 101300.0)
 
-        self.ui.R_result_label.setText('R =')
-        self.ui.M_result_label.setText('M =')
+        self.ui.R_result_label.setText(self.get_clear_part_of_R_result_label())
+        self.ui.M_result_label.setText(self.get_clear_part_of_M_result_label())
+
+    def get_clear_part_of_R_result_label(self):
+        return self.ui.R_result_label.text().split(':')[0].strip() + ':'
+
+    def get_clear_part_of_M_result_label(self):
+        return self.ui.M_result_label.text().split(':')[0].strip() + ':'
 
     def delete_coordwidget(self, wid: int):
         widget = self.sender()
@@ -95,8 +101,8 @@ class MainWindow(QMainWindow):
                 return
             else:
                 gc = GasCalculations(gas_list)
-                self.ui.R_result_label.setText(f'R = {gc.R}')
-                self.ui.M_result_label.setText(f'M = {gc.M}')
+                self.ui.R_result_label.setText(f'{self.get_clear_part_of_R_result_label()} {gc.R}')
+                self.ui.M_result_label.setText(f'{self.get_clear_part_of_M_result_label()} {gc.M}')
 
     def press_manual_button(self):
         self.about_program.exec()
