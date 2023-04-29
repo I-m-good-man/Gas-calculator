@@ -28,6 +28,8 @@ class MainWindow(QMainWindow):
         self.ui.clear_inputs_btn.clicked.connect(self.clear_area)
         self.ui.calculate_btn.clicked.connect(self.calculate)
 
+      
+
     def add_coord_widget(self):
         self.counter_id += 1
         coord_widget = CoordWidget(self.counter_id)
@@ -62,7 +64,7 @@ class MainWindow(QMainWindow):
 
     def recount_coord_widgets(self):
         for i in range(self.ui.coordwidget_layout.count()):
-            self.ui.coordwidget_layout.itemAt(i).widget().ui.groupBox.setTitle(str(i+1))
+            self.ui.coordwidget_layout.itemAt(i).widget().ui.groupBox.setTitle(f'Газ {str(i+1)}')
 
     def calculate(self):
         temp_value = self.ui.temp_doubleSpinBox.value()
