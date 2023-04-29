@@ -175,19 +175,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="R_result_label">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Индивидуальная газовая постоянная R [Дж/(К*кг)]: </string>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QLabel" name="M_result_label">
         <property name="font">
          <font>
@@ -197,6 +184,19 @@
         </property>
         <property name="text">
          <string>Молярная масса M [г/моль]: </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="R_result_label">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Индивидуальная газовая постоянная R [Дж/(К*кг)]: </string>
         </property>
        </widget>
       </item>
