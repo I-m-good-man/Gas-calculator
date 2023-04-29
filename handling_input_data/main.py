@@ -108,7 +108,7 @@ class GasCalculations:
     @property
     def M(self):
         self._M = round(sum(map(lambda x: x.mol_mass_si * x.amount_of_substance, self.gas_list)) /
-                sum(map(lambda x: x.amount_of_substance, self.gas_list)), 6) * 1000
+                sum(map(lambda x: x.amount_of_substance, self.gas_list)) * 1000, 6)
         return self._M
 
     @property
