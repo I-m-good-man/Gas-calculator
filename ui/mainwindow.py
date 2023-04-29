@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from PyQt6 import QtGui
 from ui.base_qt_ui.ui_main_window import Ui_MainWindow
 from ui.coordwidget import CoordWidget
-from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput, GasCalculations
+from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput, GasCalculations, PercentSumError, GasTypeError
 
 
 class MainWindow(QMainWindow):
@@ -93,10 +93,10 @@ class MainWindow(QMainWindow):
                     gas = GasInput(*args_list).process_input_data()
                     gas_list.append(gas)
                 except MolMassInputException as error:
-                    self.error.setText(f'Газ {w.ui.groupBox.title()}. {str(error)}')
+                    self.error.setText(f'{w.ui.groupBox.title()}. {str(error)}')
                     self.error.exec()
                 except VolumeMassInputException as error:
-                    self.error.setText(f'Газ {w.ui.groupBox.title()}. {str(error)}')
+                    self.error.setText(f'{w.ui.groupBox.title()}. {str(error)}')
                     self.error.exec()
 
             # если во всех газах оказались валидные данные
@@ -104,8 +104,19 @@ class MainWindow(QMainWindow):
                 return
             else:
                 gc = GasCalculations(gas_list)
-                self.ui.R_result_label.setText(f'{self.get_clear_part_of_R_result_label()} {gc.R}')
-                self.ui.M_result_label.setText(f'{self.get_clear_part_of_M_result_label()} {gc.M}')
+                try:
+                    gc.check_gases()
+                    self.ui.R_result_label.setText(f'{self.get_clear_part_of_R_result_label()} {gc.R}')
+                    self.ui.M_result_label.setText(f'{self.get_clear_part_of_M_result_label()} {gc.M}')
+                except PercentSumError as err:
+                    self.error.setText(f'Ошибка процентов. {str(err)}')
+                    self.error.exec()
+                except GasTypeError as err:
+                    self.error.setText(f'Ошибка типов газов. {str(err)}')
+                    self.error.exec()
+                except Exception as err:
+                    self.error.setText(f'Возникла ошибка при расчете. Проверьте переданные значения.')
+                    self.error.exec()
 
     def press_manual_button(self):
         self.about_program.exec()

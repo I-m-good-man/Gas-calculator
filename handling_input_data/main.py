@@ -98,12 +98,34 @@ class GasVolumePercent(GasInterface, GasVolume):
         self.amount_of_substance = (self.p * self.volume_percent) / (100 * self.R * self.T)
 
 
+class PercentSumError(Exception):
+    ...
+
+
+class GasTypeError(Exception):
+    ...
+
+
 class GasCalculations:
     def __init__(self, gas_list):
         self.gas_list = gas_list
         self.R_universe = 8.314
         self._M = None  # в г/моль
         self._R = None
+
+    def check_gases(self):
+        random_gas = self.gas_list[0]
+        percent_sum = 0
+        for gas in self.gas_list:
+            if type(gas) != type(random_gas):
+                raise GasTypeError('Выбор массы/объема должен быть одинаковым для всех газов.')
+            else:
+                if isinstance(gas, GasVolumePercent):
+                    percent_sum += gas.volume_percent
+                elif isinstance(gas, GasMassPercent):
+                    percent_sum += gas.mass_percent
+        if (isinstance(random_gas, GasVolumePercent) or isinstance(random_gas, GasMassPercent)) and percent_sum != 100:
+            raise PercentSumError(f'Суммарное число процентов переданных значений {percent_sum}, а должно быть 100.')
 
     @property
     def M(self):
