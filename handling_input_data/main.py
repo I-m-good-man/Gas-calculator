@@ -77,7 +77,7 @@ class GasMassPercent(GasInterface):
 
 
 class GasVolume:
-    R = 8.314  # универсальная газовая постоянная
+    R = 8.314472  # универсальная газовая постоянная
 
 
 class GasVolumeMl(GasInterface, GasVolume):
