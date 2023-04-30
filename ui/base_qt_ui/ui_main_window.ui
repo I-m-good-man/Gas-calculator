@@ -137,7 +137,7 @@
           <item>
            <layout class="QVBoxLayout" name="volume_choice_3">
             <item>
-             <widget class="QCheckBox" name="volume_checkbox_3">
+             <widget class="QCheckBox" name="volume_checkbox">
               <property name="text">
                <string>V - Объем</string>
               </property>
@@ -146,7 +146,7 @@
             <item>
              <layout class="QHBoxLayout" name="volume_units_choice_3">
               <item>
-               <widget class="QCheckBox" name="percent_checkbox_5">
+               <widget class="QCheckBox" name="percent_checkbox_2">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -166,7 +166,7 @@
                </widget>
               </item>
               <item alignment="Qt::AlignHCenter">
-               <widget class="QCheckBox" name="ml_checkbox_3">
+               <widget class="QCheckBox" name="ml_checkbox">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -192,7 +192,7 @@
           <item>
            <layout class="QVBoxLayout" name="mass_choice_3">
             <item>
-             <widget class="QCheckBox" name="mass_checkbox_3">
+             <widget class="QCheckBox" name="mass_checkbox">
               <property name="text">
                <string>m - Масса</string>
               </property>
@@ -208,7 +208,7 @@
             <item>
              <layout class="QHBoxLayout" name="mass_units_choice_3">
               <item alignment="Qt::AlignHCenter">
-               <widget class="QCheckBox" name="percent_checkbox_6">
+               <widget class="QCheckBox" name="percent_checkbox">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -228,7 +228,7 @@
                </widget>
               </item>
               <item alignment="Qt::AlignBottom">
-               <widget class="QCheckBox" name="g_checkbox_3">
+               <widget class="QCheckBox" name="g_checkbox">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
