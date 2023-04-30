@@ -35,7 +35,7 @@ class GasInput:
         mol_mass_si = mol_mass_value / 1000
 
         try:
-            volume_mass_value = float(self.volume_mass_input.strip())
+            volume_mass_value = float(self.volume_mass_input.strip().replace(',', '.'))
         except ValueError:
             raise VolumeMassInputException('Ошибка при вводе массы/объема.')
 
