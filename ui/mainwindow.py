@@ -13,11 +13,13 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.counter_id: int = 0
 
+        self.setWindowTitle("Калькулятор газов")
+
         self.setWindowIcon(QtGui.QIcon('logo.png'))
 
         self.about_program = QMessageBox()
         self.about_program.setWindowTitle('О программе')
-        self.about_program.setText('Программа для расчета индивидуальной газовой постоянной смеси газов. Сделано для РХТУ. \n\nАвтор: Хатымов Марат Рустемович\nEmail: maratxat@ya.ru\nTelegram: @i_m_good_man')
+        self.about_program.setText('Программа для расчета индивидуальной газовой постоянной и молярной массы смеси газов.\nСделано для: Целевая поисковая лаборатория «Перспективные высокоэнергетические материалы» РХТУ. \n\nАвтор: Хатымов Марат Рустемович\nEmail: maratxat@ya.ru\nTelegram: @i_m_good_man')
         self.ui.manual_button.clicked.connect(self.press_manual_button)
 
         self.error = QMessageBox()
