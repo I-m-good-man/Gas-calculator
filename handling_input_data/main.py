@@ -135,7 +135,7 @@ class GasCalculations:
 
     @property
     def R(self):
-        self._R = round(self.R_universe / self.M, 6)
+        self._R = round(self.R_universe / (self.M / 1000), 6)
         return self._R
 
 
