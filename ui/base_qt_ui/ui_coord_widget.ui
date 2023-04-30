@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
-    <height>258</height>
+    <width>668</width>
+    <height>96</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -40,7 +40,7 @@
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>120</height>
+       <height>90</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -147,87 +147,11 @@
         <item>
          <layout class="QVBoxLayout" name="mass_or_volume_input">
           <item>
-           <layout class="QHBoxLayout" name="mass_or_volume_choice">
-            <item>
-             <layout class="QVBoxLayout" name="volume_choice">
-              <item>
-               <widget class="QCheckBox" name="volume_checkbox">
-                <property name="text">
-                 <string>V - Объем</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="volume_units_choice">
-                <item>
-                 <widget class="QCheckBox" name="percent_checkbox_2">
-                  <property name="text">
-                   <string>%</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="Line" name="line_4">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item alignment="Qt::AlignHCenter">
-                 <widget class="QCheckBox" name="ml_checkbox">
-                  <property name="text">
-                   <string>мл</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="Line" name="line_3">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="mass_choice">
-              <item>
-               <widget class="QCheckBox" name="mass_checkbox">
-                <property name="text">
-                 <string>m - Масса</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="mass_units_choice">
-                <item>
-                 <widget class="QCheckBox" name="percent_checkbox">
-                  <property name="text">
-                   <string>%</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="Line" name="line_5">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item alignment="Qt::AlignHCenter">
-                 <widget class="QCheckBox" name="g_checkbox">
-                  <property name="text">
-                   <string>г</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-           </layout>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Масса/объем газа</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QComboBox" name="mass_volume_comboBox"/>
