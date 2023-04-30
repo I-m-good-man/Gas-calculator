@@ -94,12 +94,12 @@ class MainWindow(QMainWindow):
             for w in items:
                 args_list = [w.ui.mol_mass_comboBox.currentText(),
                              w.ui.mass_volume_comboBox.currentText(),
-                             w.ui.volume_checkbox.isChecked(),
-                             w.ui.percent_checkbox_2.isChecked(),
-                             w.ui.ml_checkbox.isChecked(),
-                             w.ui.mass_checkbox.isChecked(),
-                             w.ui.percent_checkbox.isChecked(),
-                             w.ui.g_checkbox.isChecked(),
+                             self.ui.volume_checkbox.isChecked(),
+                             self.ui.percent_checkbox_2.isChecked(),
+                             self.ui.ml_checkbox.isChecked(),
+                             self.ui.mass_checkbox.isChecked(),
+                             self.ui.percent_checkbox.isChecked(),
+                             self.ui.g_checkbox.isChecked(),
                              p_value, temp_value
                              ]
                 try:
