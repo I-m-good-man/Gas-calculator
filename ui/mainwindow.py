@@ -51,6 +51,10 @@ class MainWindow(QMainWindow):
         self.ui.g_checkbox.clicked.connect(self.press_g_checkbox)
         self.ui.percent_checkbox.clicked.connect(self.press_percent_checkbox)
 
+        self.ui.amount_of_substance_checkbox.clicked.connect(self.press_amount_of_substance_checkbox)
+        self.ui.mole_checkbox.clicked.connect(self.press_mole_checkbox)
+        self.ui.percent_checkbox_3.clicked.connect(self.press_percent_checkbox_3)
+
     def add_coord_widget(self):
         self.counter_id += 1
         coord_widget = CoordWidget(self.counter_id)
@@ -146,20 +150,20 @@ class MainWindow(QMainWindow):
         Если нажали на выбор объема, то обрабатываем чекбоксы
         :return:
         """
-        # чекбокс массы - false
-        self.ui.mass_checkbox.setChecked(False)
+        if not self.ui.volume_checkbox.isChecked():
+            if (not self.ui.mass_checkbox.isChecked()) and (not self.ui.amount_of_substance_checkbox.isChecked()):
+                self.ui.volume_checkbox.setChecked(True)
+        else:
+            # чекбокс массы и количества - false
+            self.ui.mass_checkbox.setChecked(False)
+            self.ui.amount_of_substance_checkbox.setChecked(False)
 
-        # чекбоксы за подробный выбор массы делаем false и некликабельными
-        self.ui.g_checkbox.setChecked(False)
-        self.ui.g_checkbox.setCheckable(False)
-        self.ui.percent_checkbox.setChecked(False)
-        self.ui.percent_checkbox.setCheckable(False)
+            self.unchecked_all_subcheckboxes()
 
-
-        # делаем кликабельными чекбоксы объема и выбираем один чекбокс
-        self.ui.ml_checkbox.setCheckable(True)
-        self.ui.ml_checkbox.setChecked(True)
-        self.ui.percent_checkbox_2.setCheckable(True)
+            # делаем кликабельными чекбоксы объема и выбираем один чекбокс
+            self.ui.ml_checkbox.setCheckable(True)
+            self.ui.ml_checkbox.setChecked(True)
+            self.ui.percent_checkbox_2.setCheckable(True)
 
     def press_g_checkbox(self):
         """
@@ -182,19 +186,20 @@ class MainWindow(QMainWindow):
         Если нажали на выбор массы, то обрабатываем чекбоксы
         :return:
         """
-        # чекбокс объема - false
-        self.ui.volume_checkbox.setChecked(False)
+        if not self.ui.mass_checkbox.isChecked():
+            if (not self.ui.volume_checkbox.isChecked()) and (not self.ui.amount_of_substance_checkbox.isChecked()):
+                self.ui.mass_checkbox.setChecked(True)
+        else:
+            # чекбокс объема и количества - false
+            self.ui.volume_checkbox.setChecked(False)
+            self.ui.amount_of_substance_checkbox.setChecked(False)
 
-        # чекбоксы за подробный выбор объема делаем false и некликабельными
-        self.ui.ml_checkbox.setChecked(False)
-        self.ui.ml_checkbox.setCheckable(False)
-        self.ui.percent_checkbox_2.setChecked(False)
-        self.ui.percent_checkbox_2.setCheckable(False)
+            self.unchecked_all_subcheckboxes()
 
-        # делаем кликабельными чекбоксы массы и выбираем один чекбокс
-        self.ui.g_checkbox.setCheckable(True)
-        self.ui.g_checkbox.setChecked(True)
-        self.ui.percent_checkbox.setCheckable(True)
+            # делаем кликабельными чекбоксы массы и выбираем один чекбокс
+            self.ui.g_checkbox.setCheckable(True)
+            self.ui.g_checkbox.setChecked(True)
+            self.ui.percent_checkbox.setCheckable(True)
 
     def press_ml_checkbox(self):
         """
@@ -211,3 +216,55 @@ class MainWindow(QMainWindow):
         """
         if self.ui.ml_checkbox.checkState():
             self.ui.ml_checkbox.setChecked(False)
+
+    def press_amount_of_substance_checkbox(self):
+        """
+        Если нажали на количества вещества, то обрабатываем чекбоксы
+        :return:
+        """
+        if not self.ui.amount_of_substance_checkbox.isChecked():
+            if (not self.ui.mass_checkbox.isChecked()) and (not self.ui.volume_checkbox.isChecked()):
+                self.ui.amount_of_substance_checkbox.setChecked(True)
+        else:
+            # чекбокс массы и объема - false
+            self.ui.mass_checkbox.setChecked(False)
+            self.ui.volume_checkbox.setChecked(False)
+
+            self.unchecked_all_subcheckboxes()
+
+            # делаем кликабельными чекбоксы количества вещества и выбираем один чекбокс
+            self.ui.mole_checkbox.setCheckable(True)
+            self.ui.mole_checkbox.setChecked(True)
+            self.ui.percent_checkbox_3.setCheckable(True)
+
+    def press_mole_checkbox(self):
+        """
+        Если чекбокс процентов был уже выбран, то его обнуляем
+        :return:
+        """
+        if self.ui.percent_checkbox_3.checkState():
+            self.ui.percent_checkbox_3.setChecked(False)
+
+    def press_percent_checkbox_3(self):
+        """
+        Если чекбокс молей был уже выбран, то его обнуляем
+        :return:
+        """
+        if self.ui.mole_checkbox.checkState():
+            self.ui.mole_checkbox.setChecked(False)
+
+    def unchecked_all_subcheckboxes(self):
+        self.ui.ml_checkbox.setChecked(False)
+        self.ui.ml_checkbox.setCheckable(False)
+        self.ui.percent_checkbox_2.setChecked(False)
+        self.ui.percent_checkbox_2.setCheckable(False)
+
+        self.ui.percent_checkbox.setChecked(False)
+        self.ui.percent_checkbox.setCheckable(False)
+        self.ui.g_checkbox.setChecked(False)
+        self.ui.g_checkbox.setCheckable(False)
+
+        self.ui.mole_checkbox.setChecked(False)
+        self.ui.mole_checkbox.setCheckable(False)
+        self.ui.percent_checkbox_3.setChecked(False)
+        self.ui.percent_checkbox_3.setCheckable(False)
