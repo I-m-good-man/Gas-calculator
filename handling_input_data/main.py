@@ -54,7 +54,7 @@ class GasInput:
                 volume_percent = volume
                 return GasVolumePercent(mol_mass_si, volume_percent, self.p, self.T)
             else:
-                raise VolumeMassCheckboxError('Не выбран единица измерения ввода объема.')
+                raise VolumeMassCheckboxError('Не выбрана единица измерения ввода объема.')
         elif self.mass_checkbox:
             mass = volume_mass_value
             if self.mass_g_checkbox:
@@ -64,14 +64,14 @@ class GasInput:
                 mass_percent = mass
                 return GasMassPercent(mol_mass_si, mass_percent)
             else:
-                raise VolumeMassCheckboxError('Не выбран единица измерения ввода массы.')
+                raise VolumeMassCheckboxError('Не выбрана единица измерения ввода массы.')
         elif self.amount_of_substance_checkbox:
             amount = volume_mass_value
             if self.mole_checkbox:
                 amount_si = amount
                 return GasAmountMole(mol_mass_si, amount_si)
             else:
-                raise VolumeMassCheckboxError('Не выбран единица измерения ввода кол-ва вещества')
+                raise VolumeMassCheckboxError('Не выбрана единица измерения ввода кол-ва вещества')
 
 
 class GasInterface:
