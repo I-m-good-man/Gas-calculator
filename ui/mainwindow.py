@@ -52,8 +52,6 @@ class MainWindow(QMainWindow):
         self.ui.percent_checkbox.clicked.connect(self.press_percent_checkbox)
 
         self.ui.amount_of_substance_checkbox.clicked.connect(self.press_amount_of_substance_checkbox)
-        self.ui.mole_checkbox.clicked.connect(self.press_mole_checkbox)
-        self.ui.percent_checkbox_3.clicked.connect(self.press_percent_checkbox_3)
 
     def add_coord_widget(self):
         self.counter_id += 1
@@ -235,23 +233,7 @@ class MainWindow(QMainWindow):
             # делаем кликабельными чекбоксы количества вещества и выбираем один чекбокс
             self.ui.mole_checkbox.setCheckable(True)
             self.ui.mole_checkbox.setChecked(True)
-            self.ui.percent_checkbox_3.setCheckable(True)
 
-    def press_mole_checkbox(self):
-        """
-        Если чекбокс процентов был уже выбран, то его обнуляем
-        :return:
-        """
-        if self.ui.percent_checkbox_3.checkState():
-            self.ui.percent_checkbox_3.setChecked(False)
-
-    def press_percent_checkbox_3(self):
-        """
-        Если чекбокс молей был уже выбран, то его обнуляем
-        :return:
-        """
-        if self.ui.mole_checkbox.checkState():
-            self.ui.mole_checkbox.setChecked(False)
 
     def unchecked_all_subcheckboxes(self):
         self.ui.ml_checkbox.setChecked(False)
@@ -266,5 +248,3 @@ class MainWindow(QMainWindow):
 
         self.ui.mole_checkbox.setChecked(False)
         self.ui.mole_checkbox.setCheckable(False)
-        self.ui.percent_checkbox_3.setChecked(False)
-        self.ui.percent_checkbox_3.setCheckable(False)
