@@ -67,7 +67,7 @@ class GasInput:
                 raise VolumeMassCheckboxError('Не выбран единица измерения ввода массы.')
         elif self.amount_of_substance_checkbox:
             amount = volume_mass_value
-            if self.mass_g_checkbox:
+            if self.mole_checkbox:
                 amount_si = amount
                 return GasAmountMole(mol_mass_si, amount_si)
             else:

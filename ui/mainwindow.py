@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from PyQt6 import QtGui
 from ui.base_qt_ui.ui_main_window import Ui_MainWindow
 from ui.coordwidget import CoordWidget
-from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput, GasCalculations, PercentSumError, GasTypeError
+from handling_input_data.main import MolMassInputException, VolumeMassInputException, GasInput, GasCalculations, PercentSumError, GasTypeError, VolumeMassCheckboxError
 
 
 class MainWindow(QMainWindow):
@@ -109,7 +109,8 @@ class MainWindow(QMainWindow):
                              self.ui.mass_checkbox.isChecked(),
                              self.ui.percent_checkbox.isChecked(),
                              self.ui.g_checkbox.isChecked(),
-                             p_value, temp_value
+                             p_value, temp_value, self.ui.amount_of_substance_checkbox.isChecked(),
+                             self.ui.mole_checkbox.isChecked()
                              ]
                 try:
                     gas = GasInput(*args_list).process_input_data()
@@ -118,6 +119,9 @@ class MainWindow(QMainWindow):
                     self.error.setText(f'{w.ui.groupBox.title()}. {str(error)}')
                     self.error.exec()
                 except VolumeMassInputException as error:
+                    self.error.setText(f'{w.ui.groupBox.title()}. {str(error)}')
+                    self.error.exec()
+                except VolumeMassCheckboxError as error:
                     self.error.setText(f'{w.ui.groupBox.title()}. {str(error)}')
                     self.error.exec()
 
