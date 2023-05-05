@@ -6,9 +6,14 @@ class VolumeMassInputException(Exception):
     ...
 
 
+class VolumeMassCheckboxError(Exception):
+    ...
+
+
 class GasInput:
     def __init__(self, mol_mass_input, volume_mass_input, volume_checkbox, volume_percent_checkbox, volume_ml_checkbox,
-                 mass_checkbox, mass_percent_checkbox, mass_g_checkbox, p, T):
+                 mass_checkbox, mass_percent_checkbox, mass_g_checkbox, p, T, amount_of_substance_checkbox,
+                 mole_checkbox):
         self.mol_mass_input = mol_mass_input
         self.volume_checkbox = volume_checkbox
         self.volume_percent_checkbox = volume_percent_checkbox
@@ -19,6 +24,8 @@ class GasInput:
         self.volume_mass_input = volume_mass_input
         self.p = p
         self.T = T
+        self.amount_of_substance_checkbox = amount_of_substance_checkbox
+        self.mole_checkbox = mole_checkbox
 
     def process_input_data(self):
         """
@@ -28,7 +35,6 @@ class GasInput:
         mol_mass_value = self.mol_mass_input.split(':')[-1].strip().replace(',', '.')
         try:
             mol_mass_value = float(mol_mass_value)
-
         except ValueError:
             raise MolMassInputException('Ошибка при вводе молярной массы.')
         # переводим в СИ
@@ -47,6 +53,8 @@ class GasInput:
             elif self.volume_percent_checkbox:
                 volume_percent = volume
                 return GasVolumePercent(mol_mass_si, volume_percent, self.p, self.T)
+            else:
+                raise VolumeMassCheckboxError('Не выбран единица измерения ввода объема.')
         elif self.mass_checkbox:
             mass = volume_mass_value
             if self.mass_g_checkbox:
@@ -55,6 +63,15 @@ class GasInput:
             elif self.mass_percent_checkbox:
                 mass_percent = mass
                 return GasMassPercent(mol_mass_si, mass_percent)
+            else:
+                raise VolumeMassCheckboxError('Не выбран единица измерения ввода массы.')
+        elif self.amount_of_substance_checkbox:
+            amount = volume_mass_value
+            if self.mass_g_checkbox:
+                amount_si = amount
+                return GasAmountMole(mol_mass_si, amount_si)
+            else:
+                raise VolumeMassCheckboxError('Не выбран единица измерения ввода кол-ва вещества')
 
 
 class GasInterface:
@@ -96,6 +113,13 @@ class GasVolumePercent(GasInterface, GasVolume):
         self.p = p
         self.T = T
         self.amount_of_substance = (self.p * self.volume_percent) / (100 * self.R * self.T)
+
+
+class GasAmountMole(GasInterface):
+    def __init__(self, mol_mass_si, amount_si):
+        self.mol_mass_si = mol_mass_si
+        self.amount_si = amount_si
+        self.amount_of_substance = amount_si
 
 
 class PercentSumError(Exception):
