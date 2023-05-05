@@ -108,5 +108,5 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.groupBox.setTitle(_translate("Form", "GroupBox"))
         self.mol_mass_label.setText(_translate("Form", "Молярная масса газа (г/моль)"))
-        self.label.setText(_translate("Form", "Масса/объем газа"))
+        self.label.setText(_translate("Form", "Масса/объем/кол-во вещества"))
         self.delete_button.setText(_translate("Form", "Удалить"))

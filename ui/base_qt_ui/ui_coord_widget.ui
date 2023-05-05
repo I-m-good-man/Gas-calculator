@@ -149,7 +149,7 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Масса/объем газа</string>
+             <string>Масса/объем/кол-во вещества</string>
             </property>
            </widget>
           </item>
